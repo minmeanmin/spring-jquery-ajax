@@ -61,4 +61,21 @@ public class BoardRepositoryTest {
 
         // then -> 눈으로 확인 (쿼리)
     } // Rollback (자동)
+
+    @Test
+    public void updateById_test(){ // 테스트 메서드는 파라미터가 없다. 리턴도 없다.
+        // given
+        BoardRequest.UpdateDTO requestDTO = new BoardRequest.UpdateDTO();
+        requestDTO.setTitle("수정 제목");
+        requestDTO.setContent("수정 내용");
+        requestDTO.setAuthor("짐니");
+        Integer id = 8;
+
+        // when
+        boardRepository.updateById(requestDTO, id);
+
+        // then -> 눈으로 확인 (쿼리)
+        List<Board> boardList = boardRepository.selectAll();
+        System.out.println(boardList);
+    } // Rollback (자동)
 }

@@ -1,5 +1,7 @@
 package shop.mtcoding.blog.board;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +25,13 @@ public class BoardController {
         return "board/saveForm";
     }
 
-    @GetMapping("/board/{id}/updateForm")
-    public String updateForm(@PathVariable int id) {
+    @GetMapping("/board/{boardId}/updateForm")
+    public String updateForm(@PathVariable Integer boardId, HttpServletRequest request) {
+
+        Board board = boardRepository.selectOne(boardId);
+        System.out.println(board);
+        request.setAttribute("board", board);
+
         return "board/updateForm";
     }
 
